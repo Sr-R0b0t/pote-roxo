@@ -138,7 +138,21 @@
   .ch.wa small{color:#4A2A10}
 
   /* Visit */
-  .visit{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .visit{display:grid;grid-template-columns:1.35fr 1fr;gap:18px;align-items:stretch}
+  .visit-side{display:flex;flex-direction:column;gap:12px}
+  .rotas{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
+  .rotas .btn{padding:13px 14px;font-size:.92rem;text-align:center}
+  .mapa{position:relative;min-height:380px;border-radius:var(--raio);overflow:hidden;border:1px solid var(--linha);background:#24083D}
+  .mapa-fake{position:absolute;inset:0;width:100%;height:100%}
+  .mapa iframe{position:absolute;inset:0;width:100%;height:100%;border:0;opacity:0;transition:opacity .5s;
+    filter:invert(.9) hue-rotate(205deg) saturate(.75) brightness(.95) contrast(.9)}
+  .mapa.ok iframe{opacity:1}
+  .mapa.ok .pin{display:none}
+  .pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);display:grid;place-items:center}
+  .pin img{width:58px;height:58px;border-radius:50%;border:3px solid var(--amarelo);box-shadow:0 10px 24px rgba(0,0,0,.5);position:relative;z-index:1;background:#37075B}
+  .pin::after{content:"";position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);border:10px solid transparent;border-top:14px solid var(--amarelo)}
+  .pin span{position:absolute;left:50%;top:50%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;background:rgba(255,194,26,.35);animation:pulso 2s ease-out infinite}
+  @keyframes pulso{to{transform:scale(2.6);opacity:0}}
   .info{background:var(--surface);border:1px solid var(--linha);border-radius:var(--raio);padding:22px}
   .info small{color:var(--suave);font-size:.8rem;text-transform:uppercase;letter-spacing:.5px;font-weight:600}
   .info p{font-family:Fredoka,Inter,system-ui,sans-serif;font-size:1.15rem;color:#fff;margin-top:6px}
@@ -212,6 +226,7 @@
     .stage{height:440px}
     .channels{grid-template-columns:1fr;padding:30px}
     .visit{grid-template-columns:1fr}
+    .mapa{min-height:300px}
     .nav-links{display:none}
   }
   @media (max-width:560px){
@@ -322,9 +337,30 @@
     <div class="wrap">
       <div class="sec-head"><div><h2>Vem buscar na loja</h2><p>Retirada sem taxa de entrega.</p></div></div>
       <div class="visit">
-        <div class="info"><small>Endereço</small><p id="addr"></p></div>
-        <div class="info"><small>Horário</small><p id="hours"></p></div>
-        <div class="info"><small>Entrega</small><p id="fee"></p></div>
+        <div class="mapa" id="mapa">
+          <!-- mapa ilustrado: aparece enquanto o Google Maps carrega ou se ele for bloqueado -->
+          <svg class="mapa-fake" viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="600" height="420" fill="#24083D"/>
+            <g stroke="#3A1460" stroke-width="18" stroke-linecap="round" fill="none">
+              <path d="M-20 120 L620 70"/><path d="M-20 300 L620 260"/><path d="M140 -20 L190 440"/>
+              <path d="M420 -20 L380 440"/><path d="M-20 200 C150 220 300 180 620 170"/>
+            </g>
+            <g stroke="#30104F" stroke-width="8" fill="none"><path d="M60 -20 L90 440"/><path d="M280 -20 L300 440"/><path d="M520 -20 L500 440"/><path d="M-20 370 L620 340"/></g>
+            <rect x="200" y="215" width="70" height="40" rx="8" fill="#2E5A1E" opacity=".55"/>
+            <rect x="440" y="90" width="90" height="60" rx="8" fill="#2E5A1E" opacity=".45"/>
+          </svg>
+          <div class="pin" aria-hidden="true"><span></span><img src="img/logo.png" alt=""></div>
+          <iframe id="mapaFrame" title="Mapa da Pote Roxo" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="visit-side">
+          <div class="info"><small>Endereço</small><p id="addr"></p></div>
+          <div class="info"><small>Horário</small><p id="hours"></p></div>
+          <div class="info"><small>Entrega</small><p id="fee"></p></div>
+          <div class="rotas">
+            <a class="btn btn-primary" id="lnkMaps" target="_blank" rel="noopener">Abrir no Google Maps</a>
+            <a class="btn btn-ghost" id="lnkWaze" target="_blank" rel="noopener">Ir com Waze</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -402,12 +438,13 @@
 const LOJA = {
   whatsapp: "5511941420560",            // DDI + DDD + número, só dígitos
   taxaEntrega: 10,
-  endereco: "Endereço da loja aqui",     // TODO: preencher
+  endereco: "R. Pedro Rodrigues, 143 - Parque Santa Rita",
+  cidade: "São Paulo - SP",              // usado no mapa e nas rotas
   horario: "Seg a Dom · 13h às 22h",    // TODO: confirmar
-  apps: {                                // TODO: colar os links das lojas nos apps
-    ifood: "",
-    noventaenove: "",
-    keeta: ""
+  apps: {
+    ifood: "https://www.ifood.com.br/delivery/sao-paulo-sp/pote-roxo---acai-parque-santa-rita/1b5d6a45-6558-4f6e-a22e-1d39a2359577",
+    noventaenove: "https://oia.99app.com/dlp9/1MswYU",
+    keeta: "https://url-eu.mykeeta.com/5UQFntvz"
   }
 };
 
@@ -611,15 +648,31 @@ let tt; function toast(m){ const t=document.getElementById("toast"); t.textConte
 const waFmt = "(" + LOJA.whatsapp.slice(2,4) + ") " + LOJA.whatsapp.slice(4,9) + "-" + LOJA.whatsapp.slice(9);
 const canais = [
   {cls:"wa", nome:"WhatsApp", sub:waFmt, href:`https://wa.me/${LOJA.whatsapp}`},
-  {nome:"iFood", sub:"Peça pelo app", href:LOJA.apps.ifood},
+  {nome:"iFood", sub:"Peça pelo iFood", href:LOJA.apps.ifood},
   {nome:"99", sub:"99Food", href:LOJA.apps.noventaenove},
-  {nome:"Keeta", sub:"Peça pelo app", href:LOJA.apps.keeta}
+  {nome:"Keeta", sub:"Peça pela Keeta", href:LOJA.apps.keeta}
 ];
 document.getElementById("channels").innerHTML = canais.map(c=>`
   <a class="ch ${c.cls||""}" ${c.href?`href="${c.href}" target="_blank" rel="noopener"`:`href="#cardapio"`}>
     <span><b>${c.nome}</b><small>${c.sub}</small></span><span>→</span>
   </a>`).join("");
 document.getElementById("addr").textContent = LOJA.endereco;
+
+/* mapa + rotas */
+const enderecoCompleto = `${LOJA.endereco}, ${LOJA.cidade}`;
+const q = encodeURIComponent(enderecoCompleto);
+document.getElementById("lnkMaps").href = `https://www.google.com/maps/search/?api=1&query=${q}`;
+document.getElementById("lnkWaze").href = `https://waze.com/ul?q=${q}&navigate=yes`;
+(function(){
+  // Prévia do claude.ai bloqueia iframes externos: lá fica o mapa ilustrado.
+  if(/claude|anthropic/.test(location.hostname)) return;
+  const mapa = document.getElementById("mapa"), fr = document.getElementById("mapaFrame");
+  const carrega = () => { fr.src = `https://www.google.com/maps?q=${q}&z=16&output=embed`; fr.onload = () => mapa.classList.add("ok"); };
+  if("IntersectionObserver" in window){
+    const io = new IntersectionObserver(([e])=>{ if(e.isIntersecting){ carrega(); io.disconnect(); } }, { rootMargin:"300px" });
+    io.observe(mapa);
+  } else carrega();
+})();
 document.getElementById("hours").textContent = LOJA.horario;
 document.getElementById("fee").textContent = `${brl(LOJA.taxaEntrega)} para toda a região`;
 document.getElementById("foot-wa").textContent = "WhatsApp " + waFmt;
