@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pote Roxo | Açaí premium na garrafinha</title>
-<meta name="description" content="Açaí e cupuaçu premium em camadas, na garrafinha de 300ml com canudo. Peça pelo WhatsApp, iFood, 99 ou Keeta, ou retire na loja no Parque Santa Rita.">
+<meta name="description" content="Açaí e cupuaçu premium em camadas, na garrafinha de 300ml com canudo, e bolos no pote. Peça pelo WhatsApp, iFood, 99 ou Keeta, ou retire na loja no Parque Santa Rita.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Fabio Cristovam">
 <meta name="theme-color" content="#1C0430">
 <!-- ⚠️ Troque o endereço abaixo pelo domínio final do site (aparece em og:url, og:image e twitter:image) -->
-<link rel="canonical" href="https://pote-roxo.netlify.app/">
+<link rel="canonical" href="https:pote-roxo.netlify.app/">
 
 <!-- FAVICON -->
 <link rel="icon" type="image/png" href="./img/logo.png">
@@ -21,8 +21,8 @@
 <meta property="og:site_name" content="Pote Roxo">
 <meta property="og:title" content="Pote Roxo | Açaí premium na garrafinha">
 <meta property="og:description" content="Açaí e cupuaçu em camadas, na garrafinha de 300ml com canudo. Monte seu pedido e finalize no WhatsApp.">
-<meta property="og:url" content="https://pote-roxo.netlify.app/">
-<meta property="og:image" content="https://pote-roxo.netlify.app/og-image.jpg">
+<meta property="og:url" content="https:pote-roxo.netlify.app/">
+<meta property="og:image" content="https:pote-roxo.netlify.app/og-image.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -32,7 +32,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Pote Roxo | Açaí premium na garrafinha">
 <meta name="twitter:description" content="Açaí e cupuaçu em camadas, na garrafinha de 300ml com canudo. Peça pelo WhatsApp, iFood, 99 ou Keeta.">
-<meta name="twitter:image" content="https://pote-roxo.netlify.app/og-image.jpg">
+<meta name="twitter:image" content="https:pote-roxo.netlify.app/og-image.jpg">
 <meta name="twitter:image:alt" content="Pote Roxo — garrafinhas de açaí em fundo roxo.">
 
 <!-- GOOGLE: dados da loja (endereço e telefone no resultado de busca) -->
@@ -41,11 +41,11 @@
   "@context": "https://schema.org",
   "@type": "Restaurant",
   "name": "Pote Roxo",
-  "servesCuisine": "Açaí",
-  "url": "https://pote-roxo.netlify.app/",
-  "image": "https://pote-roxo.netlify.app/og-image.jpg",
+  "servesCuisine": ["Açaí", "Bolo no pote"],
+  "url": "https:pote-roxo.netlify.app/",
+  "image": "https:pote-roxo.netlify.app/og-image.jpg",
   "telephone": "+55 11 94142-0560",
-  "priceRange": "R$ 12 - R$ 19",
+  "priceRange": "R$ 10 - R$ 19",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "R. Pedro Rodrigues, 143",
@@ -163,6 +163,18 @@
   .e3-add{width:100%}
 
   /* Menu */
+  @media (min-width:1000px){ #menuBolos{grid-template-columns:repeat(4,1fr)} #menuBolos .bottle{height:190px} #menuBolos .card{padding:18px} }
+  .sub-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:40px 0 16px;padding-bottom:12px;border-bottom:1px solid var(--linha);scroll-margin-top:90px}
+  .sub-head:first-of-type{margin-top:0}
+  .sub-head h3{font-size:1.45rem;font-weight:600}
+  .sub-head span{color:var(--suave);font-size:.9rem}
+  .sub-head b{color:var(--amarelo)}
+  .card-bolo .bottle{background:radial-gradient(circle at 50% 55%, rgba(255,194,26,.16), rgba(255,194,26,0) 60%), var(--surface-2)}
+  .card-bolo .bottle img{width:auto;height:auto;max-width:88%;max-height:86%;transform-origin:50% 80%}
+  .card-bolo:hover .bottle img{transform:translateY(-6px) rotate(-2deg) scale(1.05)}
+  .item .mini img.bolo{height:auto;width:46px}
+  .card-bolo .bottle svg{filter:drop-shadow(0 12px 14px rgba(0,0,0,.45));transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+  .card-bolo:hover .bottle svg{transform:translateY(-6px) rotate(-3deg) scale(1.04)}
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .card{position:relative;background:var(--surface);border:1px solid var(--linha);border-radius:var(--raio);padding:22px;display:flex;flex-direction:column;transition:border-color .2s, transform .25s ease-out, background .2s;will-change:transform}
   .card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .2s;background:radial-gradient(400px circle at var(--gx,50%) var(--gy,50%), rgba(255,255,255,.08), transparent 45%)}
@@ -314,6 +326,7 @@
     <nav class="nav-links">
       <a href="#exp3d">Home</a>
       <a href="#cardapio">Cardápio</a>
+      <a href="#bolos">Bolos</a>
       <a href="#pedir">Onde pedir</a>
       <a href="#loja">A loja</a>
     </nav>
@@ -360,7 +373,7 @@
       <div class="facts">
         <div><b>300ml</b>em cada garrafa</div>
         <div><b>3 bases</b>açaí, cupuaçu ou meio a meio</div>
-        <div><b>R$ 12</b>a partir de</div>
+        <div><b>R$ 10</b>a partir de</div>
       </div>
     </div>
     <div class="hero-img trio"><img class="b1" data-px="-0.06" data-depth="14" src="img/maracuja.webp" alt="Power Maracujá"><img class="b2" data-px="-0.16" data-depth="26" src="img/nutella.webp" alt="Explosão de Nutella"><img class="b3" data-px="0.02" data-depth="10" src="img/morango.webp" alt="Morango Supreme"></div>
@@ -405,8 +418,15 @@
           </div>
         </div>
       </div>
+      <div class="sub-head"><h3>Açaí na garrafa</h3><span>300ml · com canudo</span></div>
       <div class="grid" id="menu"></div>
       <div class="note"><i>🔄</i>Todos os sabores podem ser trocados para cupuaçu ou meio a meio (açaí e cupuaçu), sem custo extra.</div>
+
+      <div class="sub-head" id="bolos"><h3>Bolos no pote</h3><span>Todos por <b>R$ 10</b></span></div>
+      <div class="grid" id="menuBolos"></div>
+
+      <div class="sub-head"><h3>Bolos gourmet</h3><span>Todos por <b>R$ 15</b></span></div>
+      <div class="grid" id="menuGourmet"></div>
     </div>
   </section>
 
@@ -551,13 +571,21 @@ const PRODUTOS = [
   {id:"morango", nome:"Morango Supreme", desc:"Açaí premium com mousse de morango e leite em pó.", preco:15, camada:"#F27B9B", pano:"#E0405F", img:"img/morango.webp"},
   {id:"maracuja", nome:"Power Maracujá", desc:"Açaí premium com mousse de maracujá e leite em pó.", preco:15, camada:"#FFD54A", pano:"#FFC21A", img:"img/maracuja.webp"},
   {id:"nutella", nome:"Explosão de Nutella", desc:"Açaí premium com muita Nutella e leite em pó.", preco:19, camada:"#6B3A22", pano:"#5A1D4F", tag:"Mais pedido", img:"img/nutella.webp"},
-  {id:"pistache", nome:"Pistachudo", desc:"Açaí premium com muito creme de pistache e leite em pó.", preco:19, camada:"#A8C66C", pano:"#6E9B3A", img:"img/pistache.webp"}
+  /* ---- Bolos no pote (R$ 10) ---- */
+  {id:"bolo-brigadeiro", img:"img/bolo-brigadeiro.webp", cat:"bolo", nome:"Brigadeiro", desc:"Bolo de chocolate com recheio de brigadeiro.", preco:10, massa:"#5A2E1E", creme:"#7A3E26", topo:"#3E1C10", conf:"#2A120A"},
+  {id:"bolo-prestigio", img:"img/bolo-prestigio.webp", cat:"bolo", nome:"Prestígio", desc:"Bolo de chocolate com creme de coco.", preco:10, massa:"#5A2E1E", creme:"#F4EFE6", topo:"#4A2416", conf:"#FFFFFF"},
+  {id:"bolo-doisamores", img:"img/bolo-doisamores.webp", cat:"bolo", nome:"Dois Amores", desc:"Brigadeiro preto e branco em camadas.", preco:10, massa:"#5A2E1E", creme:"#F1E2C4", topo:"#3E1C10", conf:"#F1E2C4", alterna:true},
+  {id:"bolo-ninhomorango", img:"img/bolo-ninhomorango.webp", cat:"bolo", nome:"Ninho com Morango", desc:"Bolo com creme de leite Ninho e morango.", preco:10, massa:"#F2DDB0", creme:"#FBF4E6", topo:"#FBF4E6", conf:"#E5394A"},
+  /* ---- Bolos gourmet (R$ 15) ---- */
+  {id:"bolo-ninhonutella", img:"img/bolo-ninhonutella.webp", cat:"gourmet", nome:"Ninho com Nutella", desc:"Creme de leite Ninho com Nutella.", preco:15, massa:"#5A2E1E", creme:"#FBF4E6", topo:"#6B3A22", conf:"#FBF4E6", alterna:true},
+  {id:"bolo-ninhooreo", img:"img/bolo-ninhooreo.webp", cat:"gourmet", nome:"Ninho com Oreo", desc:"Creme de leite Ninho com biscoito Oreo.", preco:15, massa:"#2A1A1A", creme:"#FBF4E6", topo:"#FBF4E6", conf:"#1A1010"}
 ];
+const ehGarrafa = p => !p.cat;
 
 /* ========= Estado ========= */
 const brl = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 let base = "Açaí", modo = "entrega", pag = "Pix";
-let cart = load();
+let cart = load().filter(i=>PRODUTOS.some(p=>p.id===i.id)); // ignora itens que saíram do cardápio
 let mState = {base:"Açaí", comp:[]};
 
 function load(){ try{ return JSON.parse(localStorage.getItem("poteroxo_cart")) || []; }catch(e){ return []; } }
@@ -581,19 +609,57 @@ function garrafa(p, b, h=96){
   </svg>`;
 }
 
+/* bolo no pote em SVG: pote transparente com camadas de massa e creme, tampa e cobertura */
+function pote(p, h=96){
+  const gourmet = p.cat==="gourmet";
+  const camadas = [];
+  for(let i=0;i<4;i++){
+    const y = 88 - i*16;
+    const massa = p.alterna && i%2 ? p.creme : p.massa;
+    camadas.push(`<rect x="13" y="${y}" width="54" height="10" fill="${massa}"/>`);
+    camadas.push(`<path d="M13 ${y} q6.75 -4 13.5 0 t13.5 0 t13.5 0 t13.5 0 v-6 h-54z" fill="${p.creme}"/>`);
+  }
+  const pontos = Array.from({length:9},(_,i)=>`<circle cx="${18+i*5.5}" cy="${33+(i%2)*2}" r="1.6" fill="${p.conf}"/>`).join("");
+  return `<svg height="${h}" viewBox="0 0 80 110" aria-hidden="true">
+    <rect x="12" y="20" width="56" height="84" rx="8" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
+    <clipPath id="cp-${p.id}"><rect x="13" y="21" width="54" height="82" rx="7"/></clipPath>
+    <g clip-path="url(#cp-${p.id})">
+      <rect x="13" y="30" width="54" height="74" fill="${p.massa}"/>
+      ${camadas.join("")}
+      <path d="M13 36 q6.75 -6 13.5 0 t13.5 0 t13.5 0 t13.5 0 v-10 h-54z" fill="${p.topo}"/>
+      ${pontos}
+    </g>
+    <rect x="8" y="10" width="64" height="13" rx="4" fill="${gourmet?"#FFC21A":"#7E2DB8"}"/>
+    <rect x="8" y="19" width="64" height="4" fill="rgba(0,0,0,.18)"/>
+    <rect x="20" y="58" width="40" height="18" rx="3" fill="#2C0F72" opacity=".92"/>
+    <rect x="26" y="63" width="28" height="3" rx="1.5" fill="${gourmet?"#FFC21A":"#9B4DE0"}"/>
+    <rect x="30" y="69" width="20" height="2" rx="1" fill="#C9BBD6"/>
+    <path d="M18 26 v70" stroke="rgba(255,255,255,.25)" stroke-width="3" stroke-linecap="round"/>
+  </svg>`;
+}
+function visual(p, b, h){ return p.img ? `<img src="${p.img}" alt="${p.nome}" loading="lazy"${p.cat?' class="bolo"':""}>` : p.cat ? pote(p, h) : garrafa(p, b, h); }
+
 /* ========= Render cardápio ========= */
-function renderMenu(){
-  document.getElementById("menu").innerHTML = PRODUTOS.map(p=>`
-    <article class="card">
-      <div class="bottle">${p.img?`<img src="${p.img}" alt="Garrafa ${p.nome}" loading="lazy">`:garrafa(p, base, 150)}</div>
-      ${p.tag?`<span class="badge">${p.tag}</span>`:""}
-      <h3>${p.nome}<span class="ml">300ml</span></h3>
-      <p>${p.desc.replace(/^Açaí premium/, base==="Açaí"?"Açaí premium": base==="Cupuaçu"?"Cupuaçu premium":"Açaí e cupuaçu")}</p>
+function card(p){
+  const bolo = !!p.cat;
+  const desc = bolo ? p.desc : p.desc.replace(/^Açaí premium/, base==="Açaí"?"Açaí premium": base==="Cupuaçu"?"Cupuaçu premium":"Açaí e cupuaçu");
+  const tag = p.tag || (p.cat==="gourmet" ? "Gourmet" : "");
+  return `
+    <article class="card${bolo?" card-bolo":""}">
+      <div class="bottle">${visual(p, base, 150)}</div>
+      ${tag?`<span class="badge">${tag}</span>`:""}
+      <h3>${p.nome}<span class="ml">${bolo?"no pote":"300ml"}</span></h3>
+      <p>${desc}</p>
       <div class="row">
         <span class="price">${brl(p.preco)}</span>
         <button class="add" onclick="add('${p.id}')" aria-label="Adicionar ${p.nome}">+</button>
       </div>
-    </article>`).join("");
+    </article>`;
+}
+function renderMenu(){
+  document.getElementById("menu").innerHTML = PRODUTOS.filter(ehGarrafa).map(card).join("");
+  document.getElementById("menuBolos").innerHTML = PRODUTOS.filter(p=>p.cat==="bolo").map(card).join("");
+  document.getElementById("menuGourmet").innerHTML = PRODUTOS.filter(p=>p.cat==="gourmet").map(card).join("");
 }
 
 function setBase(b){
@@ -606,7 +672,7 @@ document.querySelectorAll("#baseSwitch button, #base3d button").forEach(bt=>bt.o
 
 /* inclinação 3D nos cartões (só com mouse) */
 if(window.matchMedia && matchMedia("(hover:hover)").matches){
-  const menu = document.getElementById("menu");
+  document.querySelectorAll(".grid").forEach(menu=>{
   menu.addEventListener("pointermove", e=>{
     const c = e.target.closest(".card"); if(!c) return;
     const r = c.getBoundingClientRect(), px = (e.clientX-r.left)/r.width-.5, py = (e.clientY-r.top)/r.height-.5;
@@ -616,13 +682,14 @@ if(window.matchMedia && matchMedia("(hover:hover)").matches){
   menu.addEventListener("pointerout", e=>{
     const c = e.target.closest(".card"); if(c && !c.contains(e.relatedTarget)) c.style.transform = "";
   });
+  });
 }
 
 /* ========= Carrinho ========= */
 function add(id){
   const p = PRODUTOS.find(x=>x.id===id);
   if(p.montar){ openModal(p); return; }
-  pushItem({id, nome:p.nome, base, comp:[], preco:p.preco});
+  pushItem({id, nome:(p.cat==="gourmet"?"Bolo gourmet ":p.cat?"Bolo no pote ":"")+p.nome, base: p.cat ? "" : base, comp:[], preco:p.preco});
 }
 function pushItem(it){
   const key = it.id+"|"+it.base+"|"+it.comp.join(",");
@@ -652,10 +719,10 @@ function renderCart(){
   box.innerHTML = cart.length ? cart.map(i=>{
     const p = PRODUTOS.find(x=>x.id===i.id);
     return `<div class="item">
-      <div class="mini">${p.img?`<img src="${p.img}" alt="">`:garrafa(p,i.base,48)}</div>
+      <div class="mini">${visual(p, i.base, 48)}</div>
       <div class="meta">
         <b>${i.nome}</b>
-        <small>${i.base}${i.comp.length?" · "+i.comp.join(", "):""}</small>
+        <small>${[i.base, i.comp.join(", ")].filter(Boolean).join(" · ")}</small>
         <div class="qty"><button onclick="changeQty('${i.key}',-1)" aria-label="Diminuir">−</button>${i.qtd}<button onclick="changeQty('${i.key}',1)" aria-label="Aumentar">+</button></div>
       </div>
       <span class="p">${brl(i.preco*i.qtd)}</span>
@@ -689,7 +756,7 @@ function sendOrder(){
   const obs = document.getElementById("obs").value.trim();
   const linhas = [
     "*Novo pedido — Pote Roxo* 🟣","",
-    ...cart.map(i=>`• ${i.qtd}x ${i.nome} (${i.base})${i.comp.length?"\n   + "+i.comp.join(", "):""} — ${brl(i.preco*i.qtd)}`),
+    ...cart.map(i=>`• ${i.qtd}x ${i.nome}${i.base?` (${i.base})`:""}${i.comp.length?"\n   + "+i.comp.join(", "):""} — ${brl(i.preco*i.qtd)}`),
     "",
     `Subtotal: ${brl(t.sub)}`,
     modo==="entrega" ? `Entrega: ${brl(t.tx)}` : "Retirada na loja",

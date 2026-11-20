@@ -12,8 +12,7 @@ const SABORES = {
   tradicional: { swirl:"#F7EFDF", pano:"#8E3FC4", faixa:"#7A35B5", sub:["Leite condensado","+ leite em pó"] },
   morango:     { swirl:"#F59AB0", pano:"#D81B7A", faixa:"#E3236B", sub:["Açaí premium","Mousse de morango"] },
   maracuja:    { swirl:"#F8CF5C", pano:"#F2B705", faixa:"#F2A900", sub:["Açaí premium","Mousse de maracujá"] },
-  nutella:     { swirl:"#6B2F1C", pano:"#7A1846", faixa:"#D3242C", sub:["Açaí premium","Nutella + Ninho"] },
-  pistache:    { swirl:"#E6DA86", pano:"#7DC22E", faixa:"#5AA51E", sub:["Açaí premium","Pistache + Ninho"] }
+  nutella:     { swirl:"#6B2F1C", pano:"#7A1846", faixa:"#D3242C", sub:["Açaí premium","Nutella + Ninho"] }
 };
 const ACAI = "#5C0E44", CUPU = "#ECDDB8";
 
@@ -211,7 +210,7 @@ function init(){
     document.querySelectorAll("#e3Sabores button").forEach(b=>b.classList.toggle("on", b.dataset.id===id));
     giro = { t0: performance.now(), dur: 750, from: garrafa.rotation.y, trocou:false };
   }
-  document.getElementById("e3Sabores").innerHTML = PRODUTOS.map(p=>`<button data-id="${p.id}" class="${p.id===atual?"on":""}"><i style="background:${SABORES[p.id].pano}"></i>${p.nome.replace("Vitamina de Açaí","Vitamina").replace("Explosão de ","")}</button>`).join("");
+  document.getElementById("e3Sabores").innerHTML = PRODUTOS.filter(p=>!p.cat).map(p=>`<button data-id="${p.id}" class="${p.id===atual?"on":""}"><i style="background:${SABORES[p.id].pano}"></i>${p.nome.replace("Vitamina de Açaí","Vitamina").replace("Explosão de ","")}</button>`).join("");
   document.querySelectorAll("#e3Sabores button").forEach(b=>b.onclick=()=>troca(b.dataset.id));
   document.getElementById("e3Add").onclick = ()=>add(atual);
   window.on3DBase = (b)=>{ liqTex.image = desenhaRecheio(SABORES[atual].swirl, b); liqTex.needsUpdate = true; };
