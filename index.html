@@ -9,7 +9,7 @@
 <meta name="author" content="Fabio Cristovam">
 <meta name="theme-color" content="#1C0430">
 <!-- ⚠️ Troque o endereço abaixo pelo domínio final do site (aparece em og:url, og:image e twitter:image) -->
-<link rel="canonical" href="https://pote-roxo.netlify.app/">
+<link rel="canonical" href="https://sr-r0b0t.github.io/pote-roxo/">
 
 <!-- FAVICON -->
 <link rel="icon" type="image/png" href="./img/logo.png">
@@ -21,8 +21,8 @@
 <meta property="og:site_name" content="Pote Roxo">
 <meta property="og:title" content="Pote Roxo | Açaí premium na garrafinha">
 <meta property="og:description" content="Açaí e cupuaçu em camadas, na garrafinha de 300ml com canudo. Monte seu pedido e finalize no WhatsApp.">
-<meta property="og:url" content="https://pote-roxo.netlify.app/">
-<meta property="og:image" content="https://pote-roxo.netlify.app/og-image.jpg">
+<meta property="og:url" content="https://sr-r0b0t.github.io/pote-roxo/">
+<meta property="og:image" content="https://sr-r0b0t.github.io/pote-roxo/og-image.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -32,7 +32,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Pote Roxo | Açaí premium na garrafinha">
 <meta name="twitter:description" content="Açaí e cupuaçu em camadas, na garrafinha de 300ml com canudo. Peça pelo WhatsApp, iFood, 99 ou Keeta.">
-<meta name="twitter:image" content="https://pote-roxo.netlify.app/og-image.jpg">
+<meta name="twitter:image" content="https://sr-r0b0t.github.io/pote-roxo/og-image.jpg">
 <meta name="twitter:image:alt" content="Pote Roxo — garrafinhas de açaí em fundo roxo.">
 
 <!-- GOOGLE: dados da loja (endereço e telefone no resultado de busca) -->
@@ -43,7 +43,7 @@
   "name": "Pote Roxo",
   "servesCuisine": "Açaí",
   "url": "https://sr-r0b0t.github.io/pote-roxo/",
-  "image": "https://pote-roxo.netlify.app//og-image.jpg",
+  "image": "https://sr-r0b0t.github.io/pote-roxo/og-image.jpg",
   "telephone": "+55 11 94142-0560",
   "priceRange": "R$ 12 - R$ 19",
   "address": {
@@ -93,7 +93,18 @@
   .cart-count{background:var(--bg);color:var(--amarelo);min-width:22px;height:22px;border-radius:999px;display:grid;place-items:center;font-size:.75rem;font-weight:700;padding:0 6px}
 
   /* Hero */
-  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:64px 20px 56px}
+  .hero{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:64px 20px 56px}
+  .hero > *:not(.deco){position:relative;z-index:1}
+
+  /* Parallax: frutinhas e folhas flutuando em camadas */
+  section{position:relative}
+  section > .wrap{position:relative;z-index:1}
+  .deco{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:visible}
+  .deco > *{position:absolute;will-change:translate, rotate}
+  .deco svg{display:block;width:100%;height:100%}
+  .trio img{will-change:translate}
+  .hero-txt{will-change:translate, opacity}
+  @media (prefers-reduced-motion: reduce){ .deco{display:none} }
   .tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border:1px solid var(--linha);color:var(--lilas);padding:6px 12px;border-radius:999px;font-size:.8rem;font-weight:600;margin-bottom:18px}
   .tag i{width:7px;height:7px;border-radius:50%;background:var(--verde);box-shadow:0 0 10px var(--verde)}
   .hero h1{font-size:clamp(2.4rem,5.6vw,4rem);font-weight:700;letter-spacing:-.5px}
@@ -314,8 +325,31 @@
 </header>
 
 <main>
-  <div class="wrap hero">
-    <div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <radialGradient id="gBaga" cx="35%" cy="30%" r="75%">
+        <stop offset="0" stop-color="#A45BD6"/><stop offset=".45" stop-color="#4A0F63"/><stop offset="1" stop-color="#16021F"/>
+      </radialGradient>
+      <linearGradient id="gFolha" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#9BDB5A"/><stop offset="1" stop-color="#4E8F2A"/>
+      </linearGradient>
+    </defs>
+    <symbol id="baga" viewBox="0 0 40 40">
+      <circle cx="20" cy="21" r="17" fill="url(#gBaga)"/>
+      <path d="M16 6.5 20 9l4-2.5-1.5 3.5h-5z" fill="#2A0636"/>
+      <ellipse cx="14" cy="14" rx="4" ry="2.6" fill="#fff" opacity=".35" transform="rotate(-30 14 14)"/>
+    </symbol>
+    <symbol id="folha" viewBox="0 0 60 40">
+      <path d="M2 20C14 2 44 0 58 20 44 40 14 38 2 20z" fill="url(#gFolha)"/>
+      <path d="M4 20H56M18 20l8-8M30 20l8-8M18 20l8 8M30 20l8 8" stroke="#3F7A20" stroke-width="1.6" fill="none" opacity=".6"/>
+    </symbol>
+    <symbol id="gota" viewBox="0 0 30 40">
+      <path d="M15 2C15 2 3 18 3 26a12 12 0 0 0 24 0C27 18 15 2 15 2z" fill="#FFC21A"/>
+      <ellipse cx="10" cy="26" rx="3" ry="5" fill="#fff" opacity=".4"/>
+    </symbol>
+  </svg>
+  <div class="wrap hero" data-deco="hero">
+    <div class="hero-txt" data-px="txt">
       <span class="tag"><i></i>Feito com ingredientes de qualidade</span>
       <h1>Açaí premium,<br>na <span>garrafinha.</span></h1>
       <p>Esquece o copo. Aqui o açaí vem em camadas, numa garrafa de 300ml com canudo — pra levar pra qualquer lugar.</p>
@@ -329,10 +363,10 @@
         <div><b>R$ 12</b>a partir de</div>
       </div>
     </div>
-    <div class="hero-img trio"><img class="b1" src="img/maracuja.webp" alt="Power Maracujá"><img class="b2" src="img/nutella.webp" alt="Explosão de Nutella"><img class="b3" src="img/morango.webp" alt="Morango Supreme"></div>
+    <div class="hero-img trio"><img class="b1" data-px="-0.06" data-depth="14" src="img/maracuja.webp" alt="Power Maracujá"><img class="b2" data-px="-0.16" data-depth="26" src="img/nutella.webp" alt="Explosão de Nutella"><img class="b3" data-px="0.02" data-depth="10" src="img/morango.webp" alt="Morango Supreme"></div>
   </div>
 
-  <section id="exp3d">
+  <section id="exp3d" data-deco="exp3d">
     <div class="wrap e3">
       <div class="stage" id="stage3d">
         <div class="hint">↻ Arraste para girar</div>
@@ -356,7 +390,7 @@
     </div>
   </section>
 
-  <section id="cardapio">
+  <section id="cardapio" data-deco="cardapio">
     <div class="wrap">
       <div class="sec-head">
         <div>
@@ -376,7 +410,7 @@
     </div>
   </section>
 
-  <section id="pedir">
+  <section id="pedir" data-deco="pedir">
     <div class="wrap">
       <div class="channels">
         <div>
@@ -738,6 +772,88 @@ document.getElementById("foot-wa").textContent = "WhatsApp " + waFmt;
 document.getElementById("yr").textContent = new Date().getFullYear();
 
 renderMenu(); renderCart();
+</script>
+<script>
+/* ========= Parallax ========= */
+(function(){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  // t: tipo · x/y: posição (%) · s: tamanho (px) · v: velocidade no scroll (+ = mais "perto", sobe mais rápido) · d: profundidade no mouse · b: desfoque · r: rotação
+  const CENAS = {
+    hero: [
+      {t:"baga", x:4,  y:10, s:26, v:.10, d:6,  b:2.5, r:0},
+      {t:"folha",x:42, y:6,  s:54, v:.22, d:12, b:1,   r:-25},
+      {t:"baga", x:47, y:78, s:40, v:.35, d:22, b:0,   r:0},
+      {t:"baga", x:93, y:14, s:18, v:.08, d:4,  b:3,   r:0},
+      {t:"gota", x:88, y:72, s:30, v:.45, d:28, b:0,   r:15},
+      {t:"folha",x:96, y:46, s:70, v:.30, d:18, b:0,   r:150},
+      {t:"baga", x:60, y:4,  s:22, v:.15, d:8,  b:1.5, r:0},
+      {t:"baga", x:20, y:90, s:30, v:.25, d:14, b:.5,  r:0}
+    ],
+    exp3d: [
+      {t:"baga", x:3,  y:20, s:34, v:.30, d:0, b:0,   r:0},
+      {t:"folha",x:94, y:12, s:60, v:.22, d:0, b:1,   r:200},
+      {t:"baga", x:92, y:85, s:20, v:.12, d:0, b:2.5, r:0}
+    ],
+    cardapio: [
+      {t:"folha",x:-2, y:30, s:80, v:.28, d:0, b:0,   r:20},
+      {t:"baga", x:97, y:8,  s:28, v:.18, d:0, b:1.5, r:0},
+      {t:"gota", x:95, y:60, s:26, v:.40, d:0, b:0,   r:-10},
+      {t:"baga", x:2,  y:88, s:22, v:.14, d:0, b:2,   r:0}
+    ],
+    pedir: [
+      {t:"baga", x:8,  y:-6, s:36, v:.32, d:0, b:0,   r:0},
+      {t:"folha",x:90, y:100,s:64, v:.24, d:0, b:.5,  r:-30}
+    ]
+  };
+  const mobile = matchMedia("(max-width:560px)").matches;
+  const itens = [];
+  document.querySelectorAll("[data-deco]").forEach(box=>{
+    const lista = CENAS[box.dataset.deco]; if(!lista) return;
+    const deco = document.createElement("div"); deco.className = "deco"; deco.setAttribute("aria-hidden","true");
+    lista.forEach(c=>{
+      const el = document.createElement("div");
+      const tam = mobile ? c.s*.7 : c.s, ratio = c.t==="folha" ? 40/60 : c.t==="gota" ? 40/30 : 1;
+      el.style.cssText = `left:${c.x}%;top:${c.y}%;width:${tam}px;height:${tam*ratio}px;${c.b?`filter:blur(${c.b}px);`:""}opacity:${c.b>2?.55:.9}`;
+      el.innerHTML = `<svg><use href="#${c.t}"/></svg>`;
+      deco.appendChild(el);
+      itens.push({el, box, c, fase:Math.random()*6.28});
+    });
+    box.prepend(deco);
+  });
+
+  const txt = document.querySelector('[data-px="txt"]');
+  const garrafas = [...document.querySelectorAll(".trio img[data-px]")];
+  let mx = 0, my = 0, tx = 0, ty = 0, pendente = false;
+  if(matchMedia("(hover:hover)").matches){
+    addEventListener("pointermove", e=>{ tx = e.clientX/innerWidth*2-1; ty = e.clientY/innerHeight*2-1; }, {passive:true});
+  }
+
+  function quadro(t){
+    mx += (tx-mx)*.06; my += (ty-my)*.06;
+    const sy = scrollY, vh = innerHeight;
+    // texto do topo sobe devagar e some
+    if(txt && sy < vh*1.2){
+      txt.style.translate = `0 ${sy*.18}px`;
+      txt.style.opacity = Math.max(0, 1 - sy/(vh*.75)).toFixed(3);
+    }
+    // garrafas do topo: velocidades diferentes + mouse
+    if(sy < vh*1.5) garrafas.forEach(g=>{
+      const v = parseFloat(g.dataset.px), d = parseFloat(g.dataset.depth);
+      g.style.translate = `${(-mx*d).toFixed(1)}px ${(sy*v - my*d*.6).toFixed(1)}px`;
+    });
+    // decorações: deslocamento relativo ao centro da seção na tela
+    itens.forEach(it=>{
+      const r = it.box.getBoundingClientRect();
+      if(r.bottom < -200 || r.top > vh+200) return;
+      const off = (r.top + r.height/2 - vh/2) * it.c.v;
+      const boia = Math.sin(t*.0012 + it.fase)*6;
+      it.el.style.translate = `${(-mx*it.c.d).toFixed(1)}px ${(off + boia - my*it.c.d*.6).toFixed(1)}px`;
+      it.el.style.rotate = `${(it.c.r + off*.08 + boia).toFixed(1)}deg`;
+    });
+    requestAnimationFrame(quadro);
+  }
+  requestAnimationFrame(quadro);
+})();
 </script>
 <script type="module" src="js/garrafa3d.js"></script>
 </body>
