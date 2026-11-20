@@ -9,7 +9,7 @@
 <meta name="author" content="Fabio Cristovam">
 <meta name="theme-color" content="#1C0430">
 <!-- ⚠️ Troque o endereço abaixo pelo domínio final do site (aparece em og:url, og:image e twitter:image) -->
-<link rel="canonical" href="https://sr-r0b0t.github.io/pote-roxo/">
+<link rel="canonical" href="https://pote-roxo.netlify.app/">
 
 <!-- FAVICON -->
 <link rel="icon" type="image/png" href="./img/logo.png">
@@ -21,8 +21,8 @@
 <meta property="og:site_name" content="Pote Roxo">
 <meta property="og:title" content="Pote Roxo | Açaí premium na garrafinha">
 <meta property="og:description" content="Açaí e cupuaçu em camadas, na garrafinha de 300ml com canudo. Monte seu pedido e finalize no WhatsApp.">
-<meta property="og:url" content="https://sr-r0b0t.github.io/pote-roxo/">
-<meta property="og:image" content="https://sr-r0b0t.github.io/pote-roxo/og-image.jpg">
+<meta property="og:url" content="https://pote-roxo.netlify.app/">
+<meta property="og:image" content="https://pote-roxo.netlify.app/og-image.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -32,7 +32,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Pote Roxo | Açaí premium na garrafinha">
 <meta name="twitter:description" content="Açaí e cupuaçu em camadas, na garrafinha de 300ml com canudo. Peça pelo WhatsApp, iFood, 99 ou Keeta.">
-<meta name="twitter:image" content="https://sr-r0b0t.github.io/pote-roxo/og-image.jpg">
+<meta name="twitter:image" content="https://pote-roxo.netlify.app/og-image.jpg">
 <meta name="twitter:image:alt" content="Pote Roxo — garrafinhas de açaí em fundo roxo.">
 
 <!-- GOOGLE: dados da loja (endereço e telefone no resultado de busca) -->
@@ -42,8 +42,8 @@
   "@type": "Restaurant",
   "name": "Pote Roxo",
   "servesCuisine": "Açaí",
-  "url": "https://sr-r0b0t.github.io/pote-roxo/",
-  "image": "https://sr-r0b0t.github.io/pote-roxo/og-image.jpg",
+  "url": "https://pote-roxo.netlify.app/",
+  "image": "https://pote-roxo.netlify.app/og-image.jpg",
   "telephone": "+55 11 94142-0560",
   "priceRange": "R$ 12 - R$ 19",
   "address": {
@@ -312,7 +312,7 @@
   <div class="wrap nav">
     <a href="#" class="brand"><img src="img/logo.png" alt="Pote Roxo">Pote Roxo</a>
     <nav class="nav-links">
-      <a href="#exp3d">Home</a>
+      <a href="#exp3d">3D</a>
       <a href="#cardapio">Cardápio</a>
       <a href="#pedir">Onde pedir</a>
       <a href="#loja">A loja</a>
@@ -811,6 +811,7 @@ renderMenu(); renderCart();
     const lista = CENAS[box.dataset.deco]; if(!lista) return;
     const deco = document.createElement("div"); deco.className = "deco"; deco.setAttribute("aria-hidden","true");
     lista.forEach(c=>{
+      if(mobile && c.x > 8 && c.x < 92) return; // no celular, só enfeites nas bordas (não cobrem o texto)
       const el = document.createElement("div");
       const tam = mobile ? c.s*.7 : c.s, ratio = c.t==="folha" ? 40/60 : c.t==="gota" ? 40/30 : 1;
       el.style.cssText = `left:${c.x}%;top:${c.y}%;width:${tam}px;height:${tam*ratio}px;${c.b?`filter:blur(${c.b}px);`:""}opacity:${c.b>2?.55:.9}`;
@@ -822,6 +823,7 @@ renderMenu(); renderCart();
   });
 
   const txt = document.querySelector('[data-px="txt"]');
+  const umaColuna = matchMedia("(max-width:860px)");
   const garrafas = [...document.querySelectorAll(".trio img[data-px]")];
   let mx = 0, my = 0, tx = 0, ty = 0, pendente = false;
   if(matchMedia("(hover:hover)").matches){
@@ -832,9 +834,12 @@ renderMenu(); renderCart();
     mx += (tx-mx)*.06; my += (ty-my)*.06;
     const sy = scrollY, vh = innerHeight;
     // texto do topo sobe devagar e some
-    if(txt && sy < vh*1.2){
-      txt.style.translate = `0 ${sy*.18}px`;
-      txt.style.opacity = Math.max(0, 1 - sy/(vh*.75)).toFixed(3);
+    // só no layout de duas colunas (computador); no celular o texto fica fixo e visível
+    if(txt && !umaColuna.matches && sy < vh*1.2){
+      txt.style.translate = `0 ${sy*.12}px`;
+      txt.style.opacity = Math.max(.15, 1 - sy/(vh*.9)).toFixed(3);
+    } else if(txt && txt.style.opacity){
+      txt.style.translate = ""; txt.style.opacity = "";
     }
     // garrafas do topo: velocidades diferentes + mouse
     if(sy < vh*1.5) garrafas.forEach(g=>{
