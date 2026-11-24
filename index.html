@@ -679,6 +679,7 @@
   <h3 id="mTitle">Vitamina de Açaí</h3>
   <p class="sub">Escolha a base e os complementos.</p>
   <div class="field"><label>Base</label><div class="seg three" id="mBase"></div></div>
+  <div class="field"><label>Fruta <small style="font-weight:500">(escolha uma)</small></label><div class="chips" id="mFruta"></div></div>
   <div class="field"><label>Complementos</label><div class="chips" id="mComp"></div></div>
   <div class="m-foot">
     <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
@@ -704,7 +705,8 @@ const LOJA = {
 };
 
 const BASES = ["Açaí","Cupuaçu","Meio a meio"];
-const COMPLEMENTOS = ["Morango","Banana","Leite condensado","Leite em pó","Granola","Paçoca","Mousse de maracujá","Mousse de morango","Nutella"];
+const FRUTAS_VIT = ["Banana","Morango"];                 // Vitamina: escolhe só uma fruta
+const COMPLEMENTOS = ["Leite condensado","Leite em pó","Paçoca","Nutella"];
 
 /* cor da camada (topo) e do pano de cada garrafa */
 const PRODUTOS = [
@@ -732,7 +734,7 @@ const brl = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 let base = "Açaí", modo = "entrega", pag = "Pix";
 let cart = load().filter(i=>PRODUTOS.some(p=>p.id===i.id)); // ignora itens que saíram do cardápio
 cart.forEach(i=>{ const p = PRODUTOS.find(x=>x.id===i.id); if(p && p.cat!=="marmita") i.preco = p.preco; }); // usa sempre o preço atual
-let mState = {base:"Açaí", comp:[]};
+let mState = {base:"Açaí", fruta:null, comp:[]};
 
 function load(){ try{ return JSON.parse(localStorage.getItem("poteroxo_cart")) || []; }catch(e){ return []; } }
 function save(){ try{ localStorage.setItem("poteroxo_cart", JSON.stringify(cart)); }catch(e){} }
@@ -930,12 +932,18 @@ function sendOrder(){
 /* ========= Modal vitamina ========= */
 let mProd=null;
 function openModal(p){
-  mProd=p; mState={base, comp:[]};
+  mProd=p; mState={base, fruta:null, comp:[]};
   document.getElementById("mTitle").textContent = p.nome;
   document.getElementById("mPrice").textContent = brl(p.preco);
   document.getElementById("mBase").innerHTML = BASES.map(b=>`<button data-b="${b}" class="${b===mState.base?"on":""}">${b}</button>`).join("");
   document.querySelectorAll("#mBase button").forEach(bt=>bt.onclick=()=>{
     mState.base=bt.dataset.b; document.querySelectorAll("#mBase button").forEach(x=>x.classList.toggle("on",x===bt));
+  });
+  // fruta: uma só (tocar de novo desmarca)
+  document.getElementById("mFruta").innerHTML = FRUTAS_VIT.map(f=>`<button data-f="${f}">${f}</button>`).join("");
+  document.querySelectorAll("#mFruta button").forEach(bt=>bt.onclick=()=>{
+    mState.fruta = mState.fruta===bt.dataset.f ? null : bt.dataset.f;
+    document.querySelectorAll("#mFruta button").forEach(x=>x.classList.toggle("on", x.dataset.f===mState.fruta));
   });
   document.getElementById("mComp").innerHTML = COMPLEMENTOS.map(c=>`<button data-c="${c}">${c}</button>`).join("");
   document.querySelectorAll("#mComp button").forEach(bt=>bt.onclick=()=>{
@@ -948,7 +956,7 @@ function openModal(p){
 }
 function closeModal(){ document.getElementById("modal").classList.remove("show"); if(!document.getElementById("drawer").classList.contains("show")) document.getElementById("overlay").classList.remove("show"); }
 function confirmVitamina(){
-  pushItem({id:mProd.id, nome:mProd.nome, base:mState.base, comp:[...mState.comp], preco:mProd.preco});
+  pushItem({id:mProd.id, nome:mProd.nome, base:mState.base, comp:[mState.fruta, ...mState.comp].filter(Boolean), preco:mProd.preco});
   closeModal();
 }
 
