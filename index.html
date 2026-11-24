@@ -365,7 +365,9 @@
     .grid{grid-template-columns:1fr 1fr}
     .e3{grid-template-columns:1fr;gap:20px}
     /* no celular a garrafa fica fixa no topo enquanto o cliente troca sabor e base */
-    .stage{position:sticky;top:68px;z-index:5;height:300px;margin:0 -20px;border-radius:0 0 22px 22px;border-left:0;border-right:0;box-shadow:0 14px 18px -10px rgba(0,0,0,.6)}
+    /* card com margem, igual ao da marmita; a "moldura" da cor do fundo esconde o conteúdo que passa por baixo */
+    .stage{position:sticky;top:76px;z-index:5;height:280px;border-radius:28px;
+      box-shadow:0 0 0 8px var(--bg), 0 0 0 20px var(--bg), 0 26px 22px -6px rgba(0,0,0,.55)}
     .stage .hint{bottom:10px}
     .channels{grid-template-columns:1fr;padding:30px}
     .visit{grid-template-columns:1fr}
@@ -374,7 +376,7 @@
   }
   @media (max-width:560px){
     .grid{grid-template-columns:1fr}
-    .stage{height:290px}
+    .stage{height:260px}
     .ch-list{grid-template-columns:1fr}
     .bar.has{display:flex}
     .cart-btn .lbl{display:none}
