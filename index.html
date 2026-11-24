@@ -8,6 +8,7 @@
 <meta name="robots" content="index, follow">
 <meta name="author" content="Fabio Cristovam">
 <meta name="theme-color" content="#1C0430">
+<!-- Se mudar o domínio, troque o endereço em canonical, og:url, og:image, twitter:image e no bloco do Google -->
 <link rel="canonical" href="https://pote-roxo.netlify.app/">
 
 <!-- FAVICON -->
@@ -40,11 +41,11 @@
   "@context": "https://schema.org",
   "@type": "Restaurant",
   "name": "Pote Roxo",
-  "servesCuisine": ["Açaí", "Bolo no pote"],
+  "servesCuisine": ["Açaí", "Bolo no pote", "Brownie"],
   "url": "https://pote-roxo.netlify.app/",
   "image": "https://pote-roxo.netlify.app/og-image.jpg",
   "telephone": "+55 11 94142-0560",
-  "priceRange": "R$ 10 - R$ 19",
+  "priceRange": "R$ 8 - R$ 25",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "R. Pedro Rodrigues, 143",
@@ -105,6 +106,8 @@
   section > .wrap{position:relative;z-index:1}
   .deco{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:visible}
   .deco > *{position:absolute;will-change:translate, rotate}
+  .deco .boia{width:100%;height:100%;animation:boia 5s ease-in-out infinite;will-change:transform}
+  @keyframes boia{0%,100%{transform:translateY(-5px) rotate(-4deg)}50%{transform:translateY(5px) rotate(4deg)}}
   .deco svg{display:block;width:100%;height:100%}
   .trio img{will-change:translate}
   .hero-txt{will-change:translate, opacity}
@@ -173,7 +176,8 @@
     background:radial-gradient(circle at 50% 50%, rgba(155,77,224,.35), rgba(155,77,224,0) 62%), linear-gradient(180deg,#2A0A47,#1F0636);border:1px solid var(--linha);display:grid;place-items:center;overflow:hidden}
   .mm-svg{width:88%;height:88%;overflow:visible;filter:drop-shadow(0 22px 30px rgba(0,0,0,.55))}
   .mm-escala{transform-origin:200px 200px;transition:transform .5s cubic-bezier(.3,1.4,.5,1)}
-  #mmPote{transform-origin:200px 200px;animation:mmGira 14s ease-in-out infinite}
+  #mmPote{transform-origin:200px 200px}
+
   #mmPote.vai{animation:mmVai .7s cubic-bezier(.3,1.4,.5,1)}
   @keyframes mmGira{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
   @keyframes mmVai{0%{transform:scale(1)}35%{transform:scale(.9) rotate(-6deg)}100%{transform:scale(1) rotate(0)}}
@@ -196,6 +200,8 @@
   .mm-step h4{display:flex;align-items:center;gap:10px;font:600 1rem Fredoka,Inter,sans-serif;color:#fff;margin-bottom:10px}
   .mm-step h4 span{width:24px;height:24px;border-radius:50%;background:var(--surface-3);display:grid;place-items:center;font-size:.8rem;color:var(--amarelo)}
   .mm-step h4 em{font-style:normal;font-size:.72rem;font-family:Inter,sans-serif;background:rgba(124,194,66,.18);color:var(--verde);padding:2px 8px;border-radius:999px}
+  .mm-extra{font-style:normal;font-size:.72rem;font-weight:700;color:var(--amarelo);background:rgba(255,194,26,.12);padding:1px 6px;border-radius:999px;margin-left:6px}
+  .mm-ad{color:var(--amarelo);font-weight:600}
   .mm-step h4 small{margin-left:auto;font:500 .8rem Inter,sans-serif;color:var(--suave)}
   .mm-step .e3-sabores{margin:0}
   .mm-tam{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -357,8 +363,10 @@
     .trio .b2{height:290px}
     .trio .b1,.trio .b3{height:215px}
     .grid{grid-template-columns:1fr 1fr}
-    .e3{grid-template-columns:1fr}
-    .stage{height:440px}
+    .e3{grid-template-columns:1fr;gap:20px}
+    /* no celular a garrafa fica fixa no topo enquanto o cliente troca sabor e base */
+    .stage{position:sticky;top:68px;z-index:5;height:300px;margin:0 -20px;border-radius:0 0 22px 22px;border-left:0;border-right:0;box-shadow:0 14px 18px -10px rgba(0,0,0,.6)}
+    .stage .hint{bottom:10px}
     .channels{grid-template-columns:1fr;padding:30px}
     .visit{grid-template-columns:1fr}
     .mapa{min-height:300px}
@@ -366,7 +374,7 @@
   }
   @media (max-width:560px){
     .grid{grid-template-columns:1fr}
-    .stage{height:380px}
+    .stage{height:290px}
     .ch-list{grid-template-columns:1fr}
     .bar.has{display:flex}
     .cart-btn .lbl{display:none}
@@ -431,7 +439,7 @@
       <div class="facts">
         <div><b>300ml</b>em cada garrafa</div>
         <div><b>3 bases</b>açaí, cupuaçu ou meio a meio</div>
-        <div><b>R$ 10</b>a partir de</div>
+        <div><b>R$ 8</b>a partir de</div>
       </div>
     </div>
     <div class="hero-img trio"><img class="b1" data-px="-0.06" data-depth="14" src="img/maracuja-sm.webp" srcset="img/maracuja-sm.webp 180w, img/maracuja-md.webp 260w, img/maracuja.webp 334w" sizes="(max-width:860px) 140px, 205px" width="180" height="280" alt="Power Maracujá"><img class="b2" data-px="-0.16" data-depth="26" src="img/nutella-sm.webp" srcset="img/nutella-sm.webp 180w, img/nutella-md.webp 260w, img/nutella.webp 334w" sizes="(max-width:860px) 186px, 270px" width="180" height="345" fetchpriority="high" alt="Explosão de Nutella"><img class="b3" data-px="0.02" data-depth="10" src="img/morango-sm.webp" srcset="img/morango-sm.webp 180w, img/morango-md.webp 260w, img/morango.webp 334w" sizes="(max-width:860px) 140px, 205px" width="180" height="339" alt="Morango Supreme"></div>
@@ -482,15 +490,18 @@
 
       <a class="cta-marmita" href="#marmita">
         <img src="img/marmita-sm.webp" width="84" height="81" loading="lazy" alt="">
-        <div><b>Marmita de açaí</b><small>300ml ou 500ml · monte com fruta grátis e complementos à vontade</small></div>
+        <div><b>Marmita de açaí</b><small>300ml ou 500ml · 1 fruta + 4 complementos inclusos</small></div>
         <span class="btn btn-primary">Montar</span>
       </a>
 
       <div class="sub-head" id="bolos"><h3>Bolos no pote</h3><span>Todos por <b>R$ 10</b></span></div>
       <div class="grid" id="menuBolos"></div>
 
-      <div class="sub-head"><h3>Bolos gourmet</h3><span>Todos por <b>R$ 15</b></span></div>
+      <div class="sub-head"><h3>Bolo gourmet</h3><span><b>R$ 15</b></span></div>
       <div class="grid" id="menuGourmet"></div>
+
+      <div class="sub-head" id="brownies"><h3>Brownie</h3><span><b>R$ 8</b></span></div>
+      <div class="grid" id="menuBrownie"></div>
     </div>
   </section>
 
@@ -539,7 +550,7 @@
 
         <div class="mm-step"><h4><span>1</span>Tamanho</h4><div class="mm-tam" id="mmTam"></div></div>
         <div class="mm-step"><h4><span>2</span>Base</h4><div class="e3-sabores" id="mmBase"></div></div>
-        <div class="mm-step"><h4><span>3</span>Fruta <em>grátis</em></h4><div class="e3-sabores" id="mmFruta"></div></div>
+        <div class="mm-step"><h4><span>3</span>Fruta <em id="mmFrutaInfo">1 grátis</em></h4><div class="e3-sabores" id="mmFruta"></div></div>
         <div class="mm-step"><h4><span>4</span>Complementos <small id="mmCount"></small></h4><div class="e3-sabores" id="mmComp"></div></div>
 
         <div class="mm-foot">
@@ -682,11 +693,11 @@ const LOJA = {
 };
 
 const BASES = ["Açaí","Cupuaçu","Meio a meio"];
-const COMPLEMENTOS = ["Morango","Banana","Leite condensado","Leite em pó","Granola","Paçoca"];
+const COMPLEMENTOS = ["Morango","Banana","Leite condensado","Leite em pó","Granola","Paçoca","Mousse de maracujá","Mousse de morango","Nutella"];
 
 /* cor da camada (topo) e do pano de cada garrafa */
 const PRODUTOS = [
-  {id:"vitamina", nome:"Vitamina de Açaí", desc:"Monte do seu jeito: escolha a base e os complementos.", preco:12, camada:"#B88BD6", pano:"#7CC242", montar:true, tag:"Monte a sua", img:"img/vitamina.webp"},
+  {id:"vitamina", nome:"Vitamina de Açaí", desc:"Monte do seu jeito: escolha a base e os complementos.", preco:15, camada:"#B88BD6", pano:"#7CC242", montar:true, tag:"Monte a sua", img:"img/vitamina.webp"},
   {id:"tradicional", nome:"Tradicional", desc:"Açaí premium com leite condensado e leite em pó.", preco:12, camada:"#F5EFE6", pano:"#5B1E8C"},
   {id:"morango", nome:"Morango Supreme", desc:"Açaí premium com mousse de morango e leite em pó.", preco:15, camada:"#F27B9B", pano:"#E0405F", img:"img/morango.webp"},
   {id:"maracuja", nome:"Power Maracujá", desc:"Açaí premium com mousse de maracujá e leite em pó.", preco:15, camada:"#FFD54A", pano:"#FFC21A", img:"img/maracuja.webp"},
@@ -700,7 +711,8 @@ const PRODUTOS = [
   {id:"bolo-ninhomorango", img:"img/bolo-ninhomorango.webp", cat:"bolo", nome:"Ninho com Morango", desc:"Bolo com creme de leite Ninho e morango.", preco:10, massa:"#F2DDB0", creme:"#FBF4E6", topo:"#FBF4E6", conf:"#E5394A"},
   /* ---- Bolos gourmet (R$ 15) ---- */
   {id:"bolo-ninhonutella", img:"img/bolo-ninhonutella.webp", cat:"gourmet", nome:"Ninho com Nutella", desc:"Creme de leite Ninho com Nutella.", preco:15, massa:"#5A2E1E", creme:"#FBF4E6", topo:"#6B3A22", conf:"#FBF4E6", alterna:true},
-  {id:"bolo-ninhooreo", img:"img/bolo-ninhooreo.webp", cat:"gourmet", nome:"Ninho com Oreo", desc:"Creme de leite Ninho com biscoito Oreo.", preco:15, massa:"#2A1A1A", creme:"#FBF4E6", topo:"#FBF4E6", conf:"#1A1010"}
+  /* ---- Brownie (R$ 8) ---- */
+  {id:"brownie-ninhonutella", img:"img/brownie-ninhonutella.webp", cat:"brownie", nome:"Ninho com Nutella", desc:"Brownie com recheio de leite Ninho e Nutella.", preco:8}
 ];
 const ehGarrafa = p => !p.cat;
 
@@ -708,6 +720,7 @@ const ehGarrafa = p => !p.cat;
 const brl = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 let base = "Açaí", modo = "entrega", pag = "Pix";
 let cart = load().filter(i=>PRODUTOS.some(p=>p.id===i.id)); // ignora itens que saíram do cardápio
+cart.forEach(i=>{ const p = PRODUTOS.find(x=>x.id===i.id); if(p && p.cat!=="marmita") i.preco = p.preco; }); // usa sempre o preço atual
 let mState = {base:"Açaí", comp:[]};
 
 function load(){ try{ return JSON.parse(localStorage.getItem("poteroxo_cart")) || []; }catch(e){ return []; } }
@@ -777,7 +790,7 @@ function card(p){
     <article class="card${bolo?" card-bolo":""}">
       <div class="bottle">${visual(p, base, 150)}</div>
       ${tag?`<span class="badge">${tag}</span>`:""}
-      <h3>${p.nome}<span class="ml">${bolo?"no pote":"300ml"}</span></h3>
+      <h3>${p.nome}<span class="ml">${p.cat==="brownie"?"unidade":bolo?"no pote":"300ml"}</span></h3>
       <p>${desc}</p>
       <div class="row">
         <span class="price">${brl(p.preco)}</span>
@@ -789,6 +802,7 @@ function renderMenu(){
   document.getElementById("menu").innerHTML = PRODUTOS.filter(ehGarrafa).map(card).join("");
   document.getElementById("menuBolos").innerHTML = PRODUTOS.filter(p=>p.cat==="bolo").map(card).join("");
   document.getElementById("menuGourmet").innerHTML = PRODUTOS.filter(p=>p.cat==="gourmet").map(card).join("");
+  document.getElementById("menuBrownie").innerHTML = PRODUTOS.filter(p=>p.cat==="brownie").map(card).join("");
 }
 
 function setBase(b){
@@ -818,7 +832,7 @@ if(window.matchMedia && matchMedia("(hover:hover)").matches){
 function add(id){
   const p = PRODUTOS.find(x=>x.id===id);
   if(p.montar){ openModal(p); return; }
-  pushItem({id, nome:(p.cat==="gourmet"?"Bolo gourmet ":p.cat?"Bolo no pote ":"")+p.nome, base: p.cat ? "" : base, comp:[], preco:p.preco});
+  pushItem({id, nome:({gourmet:"Bolo gourmet ", bolo:"Bolo no pote ", brownie:"Brownie "}[p.cat]||"")+p.nome, base: p.cat ? "" : base, comp:[], preco:p.preco});
 }
 function pushItem(it){
   const key = it.id+"|"+it.base+"|"+it.comp.join(",");
@@ -1015,7 +1029,7 @@ renderMenu(); renderCart();
       const el = document.createElement("div");
       const tam = mobile ? c.s*.7 : c.s, ratio = c.t==="folha" ? 40/60 : c.t==="gota" ? 40/30 : 1;
       el.style.cssText = `left:${c.x}%;top:${c.y}%;width:${tam}px;height:${tam*ratio}px;${c.b?`filter:blur(${c.b}px);`:""}opacity:${c.b>2?.55:.9}`;
-      el.innerHTML = `<svg><use href="#${c.t}"/></svg>`;
+      el.innerHTML = `<div class="boia" style="animation-delay:${(-Math.random()*5).toFixed(2)}s"><svg><use href="#${c.t}"/></svg></div>`;
       deco.appendChild(el);
       itens.push({el, box, c, fase:Math.random()*6.28});
     });
@@ -1025,9 +1039,13 @@ renderMenu(); renderCart();
   const txt = document.querySelector('[data-px="txt"]');
   const umaColuna = matchMedia("(max-width:860px)");
   const garrafas = [...document.querySelectorAll(".trio img[data-px]")];
-  let mx = 0, my = 0, tx = 0, ty = 0, pendente = false;
+  let mx = 0, my = 0, tx = 0, ty = 0, rodando = false, ultimo = 0;
+  // o parallax só calcula enquanto a pessoa rola a página ou mexe o mouse (parado = zero processamento)
+  const acorda = () => { ultimo = performance.now(); if(!rodando){ rodando = true; requestAnimationFrame(quadro); } };
+  addEventListener("scroll", acorda, {passive:true});
+  addEventListener("resize", acorda);
   if(matchMedia("(hover:hover)").matches){
-    addEventListener("pointermove", e=>{ tx = e.clientX/innerWidth*2-1; ty = e.clientY/innerHeight*2-1; }, {passive:true});
+    addEventListener("pointermove", e=>{ tx = e.clientX/innerWidth*2-1; ty = e.clientY/innerHeight*2-1; acorda(); }, {passive:true});
   }
 
   const caixas = [...new Set(itens.map(it=>it.box))];
@@ -1055,13 +1073,14 @@ renderMenu(); renderCart();
       const r = rects.get(it.box);
       if(r.bottom < -200 || r.top > vh+200) return;
       const off = (r.top + r.height/2 - vh/2) * it.c.v;
-      const boia = Math.sin(t*.0012 + it.fase)*6;
-      it.el.style.translate = `${(-mx*it.c.d).toFixed(1)}px ${(off + boia - my*it.c.d*.6).toFixed(1)}px`;
-      it.el.style.rotate = `${(it.c.r + off*.08 + boia).toFixed(1)}deg`;
+      it.el.style.translate = `${(-mx*it.c.d).toFixed(1)}px ${(off - my*it.c.d*.6).toFixed(1)}px`;
+      it.el.style.rotate = `${(it.c.r + off*.08).toFixed(1)}deg`;
     });
-    requestAnimationFrame(quadro);
+    // continua só enquanto houver movimento recente ou o mouse ainda estiver "chegando" no lugar
+    if(t - ultimo < 400 || Math.abs(tx-mx) > .002 || Math.abs(ty-my) > .002) requestAnimationFrame(quadro);
+    else rodando = false;
   }
-  requestAnimationFrame(quadro);
+  acorda();
 })();
 </script>
 <script src="js/marmita.js"></script>
