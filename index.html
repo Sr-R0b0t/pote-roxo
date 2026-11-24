@@ -8,12 +8,11 @@
 <meta name="robots" content="index, follow">
 <meta name="author" content="Fabio Cristovam">
 <meta name="theme-color" content="#1C0430">
-<!-- ⚠️ Troque o endereço abaixo pelo domínio final do site (aparece em og:url, og:image e twitter:image) -->
 <link rel="canonical" href="https://pote-roxo.netlify.app/">
 
 <!-- FAVICON -->
-<link rel="icon" type="image/png" href="./img/logo.png">
-<link rel="apple-touch-icon" href="./img/logo.png">
+<link rel="icon" type="image/png" href="./img/icon-192.png">
+<link rel="apple-touch-icon" href="./img/icon-192.png">
 
 <!-- OPEN GRAPH: WHATSAPP, FACEBOOK, INSTAGRAM E LINKEDIN -->
 <meta property="og:type" content="website">
@@ -57,7 +56,11 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- fontes carregam sem travar a página -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"></noscript>
+<!-- imagem principal (LCP) começa a baixar já -->
+<link rel="preload" as="image" href="img/nutella-sm.webp" imagesrcset="img/nutella-sm.webp 180w, img/nutella-md.webp 260w, img/nutella.webp 334w" imagesizes="(max-width:860px) 186px, 270px" fetchpriority="high">
 <style>
   :root{
     --bg:#1C0430; --surface:#290943; --surface-2:#371158; --surface-3:#46186E;
@@ -376,9 +379,9 @@
 
 <header>
   <div class="wrap nav">
-    <a href="#" class="brand"><img src="img/logo.png" alt="Pote Roxo">Pote Roxo</a>
+    <a href="#" class="brand"><img src="img/logo-sm.webp" width="42" height="42" alt="Pote Roxo">Pote Roxo</a>
     <nav class="nav-links">
-      <a href="#exp3d">Home</a>
+      <a href="#exp3d">3D</a>
       <a href="#cardapio">Cardápio</a>
       <a href="#bolos">Bolos</a>
       <a href="#marmita">Marmita</a>
@@ -431,7 +434,7 @@
         <div><b>R$ 10</b>a partir de</div>
       </div>
     </div>
-    <div class="hero-img trio"><img class="b1" data-px="-0.06" data-depth="14" src="img/maracuja.webp" alt="Power Maracujá"><img class="b2" data-px="-0.16" data-depth="26" src="img/nutella.webp" alt="Explosão de Nutella"><img class="b3" data-px="0.02" data-depth="10" src="img/morango.webp" alt="Morango Supreme"></div>
+    <div class="hero-img trio"><img class="b1" data-px="-0.06" data-depth="14" src="img/maracuja-sm.webp" srcset="img/maracuja-sm.webp 180w, img/maracuja-md.webp 260w, img/maracuja.webp 334w" sizes="(max-width:860px) 140px, 205px" width="180" height="280" alt="Power Maracujá"><img class="b2" data-px="-0.16" data-depth="26" src="img/nutella-sm.webp" srcset="img/nutella-sm.webp 180w, img/nutella-md.webp 260w, img/nutella.webp 334w" sizes="(max-width:860px) 186px, 270px" width="180" height="345" fetchpriority="high" alt="Explosão de Nutella"><img class="b3" data-px="0.02" data-depth="10" src="img/morango-sm.webp" srcset="img/morango-sm.webp 180w, img/morango-md.webp 260w, img/morango.webp 334w" sizes="(max-width:860px) 140px, 205px" width="180" height="339" alt="Morango Supreme"></div>
   </div>
 
   <section id="exp3d" data-deco="exp3d">
@@ -478,7 +481,7 @@
       <div class="note"><i>🔄</i>Todos os sabores podem ser trocados para cupuaçu ou meio a meio (açaí e cupuaçu), sem custo extra.</div>
 
       <a class="cta-marmita" href="#marmita">
-        <img src="img/marmita.webp" alt="">
+        <img src="img/marmita-sm.webp" width="84" height="81" loading="lazy" alt="">
         <div><b>Marmita de açaí</b><small>300ml ou 500ml · monte com fruta grátis e complementos à vontade</small></div>
         <span class="btn btn-primary">Montar</span>
       </a>
@@ -500,10 +503,10 @@
               <clipPath id="mmClip"><circle cx="200" cy="200" r="166"/></clipPath>
               <radialGradient id="mmBorda" cx="50%" cy="45%" r="55%"><stop offset=".82" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E4DCEA"/></radialGradient>
               <radialGradient id="mmSombraIn" cx="50%" cy="50%" r="50%"><stop offset=".86" stop-color="rgba(0,0,0,0)"/><stop offset="1" stop-color="rgba(40,0,40,.35)"/></radialGradient>
-              <pattern id="texPacoca" patternUnits="userSpaceOnUse" width="110" height="110"><image href="img/mm-pacoca-tex.webp" width="110" height="110" preserveAspectRatio="none"/></pattern>
-              <pattern id="texOvomaltine" patternUnits="userSpaceOnUse" width="120" height="120"><image href="img/mm-ovomaltine-tex.webp" width="120" height="120" preserveAspectRatio="none"/></pattern>
-              <pattern id="texNinho" patternUnits="userSpaceOnUse" width="110" height="110"><image href="img/mm-ninho-tex.webp" width="110" height="110" preserveAspectRatio="none"/></pattern>
-              <pattern id="texAmendoim" patternUnits="userSpaceOnUse" width="110" height="110"><image href="img/mm-amendoim-tex.webp" width="110" height="110" preserveAspectRatio="none"/></pattern>
+              <pattern id="texPacoca" patternUnits="userSpaceOnUse" width="110" height="110"><image data-href="img/mm-pacoca-tex.webp" width="110" height="110" preserveAspectRatio="none"/></pattern>
+              <pattern id="texOvomaltine" patternUnits="userSpaceOnUse" width="120" height="120"><image data-href="img/mm-ovomaltine-tex.webp" width="120" height="120" preserveAspectRatio="none"/></pattern>
+              <pattern id="texNinho" patternUnits="userSpaceOnUse" width="110" height="110"><image data-href="img/mm-ninho-tex.webp" width="110" height="110" preserveAspectRatio="none"/></pattern>
+              <pattern id="texAmendoim" patternUnits="userSpaceOnUse" width="110" height="110"><image data-href="img/mm-amendoim-tex.webp" width="110" height="110" preserveAspectRatio="none"/></pattern>
               <pattern id="mmTex" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="3" cy="4" r="1.1" fill="rgba(0,0,0,.18)"/><circle cx="10" cy="10" r=".9" fill="rgba(255,255,255,.12)"/></pattern>
             </defs>
             <g id="mmPoteEscala" class="mm-escala">
@@ -575,7 +578,7 @@
             <rect x="200" y="215" width="70" height="40" rx="8" fill="#2E5A1E" opacity=".55"/>
             <rect x="440" y="90" width="90" height="60" rx="8" fill="#2E5A1E" opacity=".45"/>
           </svg>
-          <div class="pin" aria-hidden="true"><span></span><img src="img/logo.png" alt=""></div>
+          <div class="pin" aria-hidden="true"><span></span><img src="img/logo-sm.webp" width="58" height="58" loading="lazy" alt=""></div>
           <iframe id="mapaFrame" title="Mapa da Pote Roxo" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="visit-side">
@@ -689,7 +692,7 @@ const PRODUTOS = [
   {id:"maracuja", nome:"Power Maracujá", desc:"Açaí premium com mousse de maracujá e leite em pó.", preco:15, camada:"#FFD54A", pano:"#FFC21A", img:"img/maracuja.webp"},
   {id:"nutella", nome:"Explosão de Nutella", desc:"Açaí premium com muita Nutella e leite em pó.", preco:19, camada:"#6B3A22", pano:"#5A1D4F", tag:"Mais pedido", img:"img/nutella.webp"},
   /* ---- Marmita (montada na seção "Monte sua marmita") ---- */
-  {id:"marmita", cat:"marmita", nome:"Marmita de Açaí", desc:"", preco:0, img:"img/marmita.webp"},
+  {id:"marmita", cat:"marmita", nome:"Marmita de Açaí", desc:"", preco:0, img:"img/marmita.webp", sm:true},
   /* ---- Bolos no pote (R$ 10) ---- */
   {id:"bolo-brigadeiro", img:"img/bolo-brigadeiro.webp", cat:"bolo", nome:"Brigadeiro", desc:"Bolo de chocolate com recheio de brigadeiro.", preco:10, massa:"#5A2E1E", creme:"#7A3E26", topo:"#3E1C10", conf:"#2A120A"},
   {id:"bolo-prestigio", img:"img/bolo-prestigio.webp", cat:"bolo", nome:"Prestígio", desc:"Bolo de chocolate com creme de coco.", preco:10, massa:"#5A2E1E", creme:"#F4EFE6", topo:"#4A2416", conf:"#FFFFFF"},
@@ -756,7 +759,14 @@ function pote(p, h=96){
     <path d="M18 26 v70" stroke="rgba(255,255,255,.25)" stroke-width="3" stroke-linecap="round"/>
   </svg>`;
 }
-function visual(p, b, h){ return p.img ? `<img src="${p.img}" alt="${p.nome}" loading="lazy"${p.cat?' class="bolo"':""}>` : p.cat ? pote(p, h) : garrafa(p, b, h); }
+function visual(p, b, h){
+  if(!p.img) return p.cat ? pote(p, h) : garrafa(p, b, h);
+  const sm = p.img.replace(".webp", "-sm.webp");
+  // miniaturas (carrinho) usam só a versão pequena; cartões escolhem pelo tamanho da tela
+  const md = p.cat ? "" : `, ${p.img.replace(".webp","-md.webp")} 260w`;
+  const src = h < 100 ? `src="${sm}"` : `src="${sm}" srcset="${sm} ${p.cat?260:180}w${md}, ${p.img} ${p.cat?440:334}w" sizes="${p.cat?"(max-width:560px) 300px, 240px":"140px"}"`;
+  return `<img ${src} alt="${p.nome}" loading="lazy" decoding="async"${p.cat?' class="bolo"':""}>`;
+}
 
 /* ========= Render cardápio ========= */
 function card(p){
@@ -1020,9 +1030,13 @@ renderMenu(); renderCart();
     addEventListener("pointermove", e=>{ tx = e.clientX/innerWidth*2-1; ty = e.clientY/innerHeight*2-1; }, {passive:true});
   }
 
+  const caixas = [...new Set(itens.map(it=>it.box))];
   function quadro(t){
     mx += (tx-mx)*.06; my += (ty-my)*.06;
     const sy = scrollY, vh = innerHeight;
+    // 1) lê tudo primeiro…
+    const rects = new Map(caixas.map(b=>[b, b.getBoundingClientRect()]));
+    // 2) …depois escreve os estilos
     // texto do topo sobe devagar e some
     // só no layout de duas colunas (computador); no celular o texto fica fixo e visível
     if(txt && !umaColuna.matches && sy < vh*1.2){
@@ -1038,7 +1052,7 @@ renderMenu(); renderCart();
     });
     // decorações: deslocamento relativo ao centro da seção na tela
     itens.forEach(it=>{
-      const r = it.box.getBoundingClientRect();
+      const r = rects.get(it.box);
       if(r.bottom < -200 || r.top > vh+200) return;
       const off = (r.top + r.height/2 - vh/2) * it.c.v;
       const boia = Math.sin(t*.0012 + it.fase)*6;
@@ -1051,6 +1065,18 @@ renderMenu(); renderCart();
 })();
 </script>
 <script src="js/marmita.js"></script>
-<script type="module" src="js/garrafa3d.js"></script>
+<script>
+/* a garrafa 3D (e a biblioteca Three.js) só é baixada quando o cliente chega perto da seção */
+(function(){
+  const sec = document.getElementById("exp3d"); if(!sec) return;
+  const carrega = () => import("./js/garrafa3d.js").catch(()=>sec.classList.add("no3d"));
+  if(!("IntersectionObserver" in window)) return carrega();
+  const observa = () => {
+    const io = new IntersectionObserver(([e])=>{ if(e.isIntersecting){ io.disconnect(); carrega(); } }, { rootMargin:"150px 0px" });
+    io.observe(sec);
+  };
+  document.readyState === "complete" ? observa() : addEventListener("load", observa, { once:true });
+})();
+</script>
 </body>
 </html>

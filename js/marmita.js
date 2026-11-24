@@ -142,6 +142,9 @@
         f = { g, pontos:[], fundo:null, calda:null };
         if(t.fundo){ f.fundo = el("rect", {x:0, y:0, width:1, height:2*RI, fill:t.fundo, class:"fundo"}); g.appendChild(f.fundo); }
         if(t.textura){
+          // baixa a foto da textura só na primeira vez que o ingrediente é escolhido
+          const imgTex = document.querySelector(`${t.textura.slice(4,-1)} image[data-href]`);
+          if(imgTex){ imgTex.setAttribute("href", imgTex.dataset.href); imgTex.removeAttribute("data-href"); }
           f.tex = el("path", {fill:t.textura, class:"tex"});
           f.texBorda = el("path", {fill:"none", stroke:"rgba(60,30,5,.35)", "stroke-width":1.2, class:"tex"});
           g.append(f.tex, f.texBorda);
