@@ -71,6 +71,7 @@
   @supports (overflow:clip){html,body{overflow-x:clip}}
   img,canvas,svg{max-width:100%}
   main{overflow-x:hidden}
+  @supports (overflow:clip){ main{overflow-x:clip} } /* clip não quebra o position:sticky */
   body{font-family:Inter,system-ui,sans-serif;color:var(--texto);line-height:1.5;-webkit-font-smoothing:antialiased;
     background:
       radial-gradient(900px 500px at 85% -5%, rgba(155,77,224,.28), transparent 60%),
@@ -161,6 +162,59 @@
   .e3-card b{font-family:Fredoka,Inter,system-ui,sans-serif;font-size:1.2rem;color:#fff;font-weight:600}
   .e3-card small{display:block;color:var(--suave);font-size:.85rem}
   .e3-add{width:100%}
+
+  /* Monte sua marmita */
+  .mm{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+  .mm-stage{position:sticky;top:88px}
+  .mm-pote-box{position:relative;aspect-ratio:1;max-width:480px;margin:0 auto;border-radius:28px;
+    background:radial-gradient(circle at 50% 50%, rgba(155,77,224,.35), rgba(155,77,224,0) 62%), linear-gradient(180deg,#2A0A47,#1F0636);border:1px solid var(--linha);display:grid;place-items:center;overflow:hidden}
+  .mm-svg{width:88%;height:88%;overflow:visible;filter:drop-shadow(0 22px 30px rgba(0,0,0,.55))}
+  .mm-escala{transform-origin:200px 200px;transition:transform .5s cubic-bezier(.3,1.4,.5,1)}
+  #mmPote{transform-origin:200px 200px;animation:mmGira 14s ease-in-out infinite}
+  #mmPote.vai{animation:mmVai .7s cubic-bezier(.3,1.4,.5,1)}
+  @keyframes mmGira{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+  @keyframes mmVai{0%{transform:scale(1)}35%{transform:scale(.9) rotate(-6deg)}100%{transform:scale(1) rotate(0)}}
+  #mmPulo{transform-origin:200px 200px}
+  #mmPulo.pula{animation:mmPula .45s ease-out}
+  @keyframes mmPula{0%{transform:scale(1)}30%{transform:scale(1.025)}100%{transform:scale(1)}}
+  .mm-base{transition:opacity .5s}
+  .mm-vazio{font:600 17px Fredoka,Inter,sans-serif;fill:rgba(255,255,255,.75);transition:opacity .4s;pointer-events:none}
+  .faixa{transition:opacity .45s, transform .45s}
+  .faixa.sai{opacity:0;transform:translateY(24px)}
+  .faixa .tex{transform-box:view-box;transition:transform .7s cubic-bezier(.3,1.1,.5,1), d .5s ease}
+  .faixa .fundo{transform-box:view-box;transform-origin:0 0;transition:transform .6s cubic-bezier(.3,1.1,.5,1)}
+  .faixa .pt{transition:transform .65s cubic-bezier(.3,1.35,.55,1), opacity .35s}
+  .faixa .calda{transition:stroke-dashoffset 1.1s ease-out}
+  .mm-tag{position:absolute;top:14px;right:14px;background:var(--amarelo);color:var(--bg);font-weight:700;font-size:.85rem;padding:5px 12px;border-radius:999px}
+  .mm-resumo{text-align:center;color:var(--suave);font-size:.9rem;margin-top:12px;min-height:2.6em}
+  .mm-resumo b{color:#fff;font-weight:600}
+  .mm-opts h2{font-size:clamp(1.8rem,3.6vw,2.4rem)}
+  .mm-step{margin-top:20px}
+  .mm-step h4{display:flex;align-items:center;gap:10px;font:600 1rem Fredoka,Inter,sans-serif;color:#fff;margin-bottom:10px}
+  .mm-step h4 span{width:24px;height:24px;border-radius:50%;background:var(--surface-3);display:grid;place-items:center;font-size:.8rem;color:var(--amarelo)}
+  .mm-step h4 em{font-style:normal;font-size:.72rem;font-family:Inter,sans-serif;background:rgba(124,194,66,.18);color:var(--verde);padding:2px 8px;border-radius:999px}
+  .mm-step h4 small{margin-left:auto;font:500 .8rem Inter,sans-serif;color:var(--suave)}
+  .mm-step .e3-sabores{margin:0}
+  .mm-tam{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .mm-tam button{border:1.5px solid var(--linha);background:var(--surface);border-radius:14px;padding:12px;text-align:left;transition:all .15s}
+  .mm-tam button b{display:block;font:600 1.2rem Fredoka,Inter,sans-serif;color:#fff}
+  .mm-tam button small{color:var(--suave)}
+  .mm-tam button.on{border-color:var(--amarelo);background:rgba(255,194,26,.1)}
+  .mm-tam button.on small{color:var(--amarelo)}
+  .mm-foot{display:grid;grid-template-columns:auto 1fr;gap:10px;margin-top:26px}
+  .cta-marmita{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,#3A1060,#290943);border:1px solid var(--linha);border-radius:var(--raio);padding:16px 20px;margin-top:22px}
+  .cta-marmita img{width:84px;height:auto;filter:drop-shadow(0 8px 12px rgba(0,0,0,.45))}
+  .cta-marmita div{flex:1}
+  .cta-marmita b{font:600 1.15rem Fredoka,Inter,sans-serif;color:#fff;display:block}
+  .cta-marmita small{color:var(--suave)}
+  @media (max-width:860px){
+    .mm{grid-template-columns:1fr;gap:24px}
+    .mm-stage{top:68px;z-index:5;background:var(--bg);padding:8px 20px 6px;margin:0 -20px;box-shadow:0 14px 18px -10px rgba(0,0,0,.6)}
+    .mm-pote-box{max-width:none;aspect-ratio:auto;height:240px}
+    .mm-svg{width:212px;height:212px}
+    .mm-resumo{margin-top:8px;font-size:.82rem;min-height:0}
+  }
+  @media (max-width:560px){ .cta-marmita .btn{padding:11px 14px;font-size:.85rem} .cta-marmita img{width:60px} }
 
   /* Menu */
   @media (min-width:1000px){ #menuBolos{grid-template-columns:repeat(4,1fr)} #menuBolos .bottle{height:190px} #menuBolos .card{padding:18px} }
@@ -324,9 +378,10 @@
   <div class="wrap nav">
     <a href="#" class="brand"><img src="img/logo.png" alt="Pote Roxo">Pote Roxo</a>
     <nav class="nav-links">
-      <a href="#exp3d">Home</a>
+      <a href="#exp3d">3D</a>
       <a href="#cardapio">Cardápio</a>
       <a href="#bolos">Bolos</a>
+      <a href="#marmita">Marmita</a>
       <a href="#pedir">Onde pedir</a>
       <a href="#loja">A loja</a>
     </nav>
@@ -422,11 +477,73 @@
       <div class="grid" id="menu"></div>
       <div class="note"><i>🔄</i>Todos os sabores podem ser trocados para cupuaçu ou meio a meio (açaí e cupuaçu), sem custo extra.</div>
 
+      <a class="cta-marmita" href="#marmita">
+        <img src="img/marmita.webp" alt="">
+        <div><b>Marmita de açaí</b><small>300ml ou 500ml · monte com fruta grátis e complementos à vontade</small></div>
+        <span class="btn btn-primary">Montar</span>
+      </a>
+
       <div class="sub-head" id="bolos"><h3>Bolos no pote</h3><span>Todos por <b>R$ 10</b></span></div>
       <div class="grid" id="menuBolos"></div>
 
       <div class="sub-head"><h3>Bolos gourmet</h3><span>Todos por <b>R$ 15</b></span></div>
       <div class="grid" id="menuGourmet"></div>
+    </div>
+  </section>
+
+  <section id="marmita" data-deco="marmita">
+    <div class="wrap mm">
+      <div class="mm-stage">
+        <div class="mm-pote-box">
+          <svg class="mm-svg" viewBox="0 0 400 400" aria-label="Pré-visualização da sua marmita">
+            <defs>
+              <clipPath id="mmClip"><circle cx="200" cy="200" r="166"/></clipPath>
+              <radialGradient id="mmBorda" cx="50%" cy="45%" r="55%"><stop offset=".82" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E4DCEA"/></radialGradient>
+              <radialGradient id="mmSombraIn" cx="50%" cy="50%" r="50%"><stop offset=".86" stop-color="rgba(0,0,0,0)"/><stop offset="1" stop-color="rgba(40,0,40,.35)"/></radialGradient>
+              <pattern id="texPacoca" patternUnits="userSpaceOnUse" width="110" height="110"><image href="img/mm-pacoca-tex.webp" width="110" height="110" preserveAspectRatio="none"/></pattern>
+              <pattern id="texOvomaltine" patternUnits="userSpaceOnUse" width="120" height="120"><image href="img/mm-ovomaltine-tex.webp" width="120" height="120" preserveAspectRatio="none"/></pattern>
+              <pattern id="texNinho" patternUnits="userSpaceOnUse" width="110" height="110"><image href="img/mm-ninho-tex.webp" width="110" height="110" preserveAspectRatio="none"/></pattern>
+              <pattern id="texAmendoim" patternUnits="userSpaceOnUse" width="110" height="110"><image href="img/mm-amendoim-tex.webp" width="110" height="110" preserveAspectRatio="none"/></pattern>
+              <pattern id="mmTex" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="3" cy="4" r="1.1" fill="rgba(0,0,0,.18)"/><circle cx="10" cy="10" r=".9" fill="rgba(255,255,255,.12)"/></pattern>
+            </defs>
+            <g id="mmPoteEscala" class="mm-escala">
+              <g id="mmPote">
+                <g id="mmPulo">
+                  <circle cx="200" cy="200" r="192" fill="url(#mmBorda)"/>
+                  <circle cx="200" cy="200" r="172" fill="#EFE8F3"/>
+                  <g clip-path="url(#mmClip)">
+                    <circle id="mmAcai" class="mm-base" cx="200" cy="200" r="166" fill="#4A0D3E"/>
+                    <circle id="mmCupu" class="mm-base" cx="200" cy="200" r="166" fill="#EAD9B0" style="opacity:0"/>
+                    <rect id="mmMeio" class="mm-base" x="200" y="34" width="166" height="332" fill="#EAD9B0" style="opacity:0"/>
+                    <circle cx="200" cy="200" r="166" fill="url(#mmTex)"/>
+                    <g id="mmCamadas"></g>
+                    <circle cx="200" cy="200" r="166" fill="url(#mmSombraIn)" pointer-events="none"/>
+                  </g>
+                  <text id="mmVazio" x="200" y="206" text-anchor="middle" class="mm-vazio">Escolha os ingredientes ✨</text>
+                </g>
+              </g>
+            </g>
+          </svg>
+          <span class="mm-tag" id="mmTamTag">300ml</span>
+        </div>
+        <p class="mm-resumo" id="mmResumo"></p>
+      </div>
+
+      <div class="mm-opts">
+        <span class="tag"><i></i>Novo</span>
+        <h2>Monte sua marmita</h2>
+        <p class="e3-lead">Escolha os ingredientes e veja sua marmita de açaí ficando pronta.</p>
+
+        <div class="mm-step"><h4><span>1</span>Tamanho</h4><div class="mm-tam" id="mmTam"></div></div>
+        <div class="mm-step"><h4><span>2</span>Base</h4><div class="e3-sabores" id="mmBase"></div></div>
+        <div class="mm-step"><h4><span>3</span>Fruta <em>grátis</em></h4><div class="e3-sabores" id="mmFruta"></div></div>
+        <div class="mm-step"><h4><span>4</span>Complementos <small id="mmCount"></small></h4><div class="e3-sabores" id="mmComp"></div></div>
+
+        <div class="mm-foot">
+          <button type="button" class="btn btn-ghost" id="mmLimpar">Limpar</button>
+          <button type="button" class="btn btn-primary" id="mmAdd">Adicionar · <span id="mmPreco"></span></button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -571,6 +688,8 @@ const PRODUTOS = [
   {id:"morango", nome:"Morango Supreme", desc:"Açaí premium com mousse de morango e leite em pó.", preco:15, camada:"#F27B9B", pano:"#E0405F", img:"img/morango.webp"},
   {id:"maracuja", nome:"Power Maracujá", desc:"Açaí premium com mousse de maracujá e leite em pó.", preco:15, camada:"#FFD54A", pano:"#FFC21A", img:"img/maracuja.webp"},
   {id:"nutella", nome:"Explosão de Nutella", desc:"Açaí premium com muita Nutella e leite em pó.", preco:19, camada:"#6B3A22", pano:"#5A1D4F", tag:"Mais pedido", img:"img/nutella.webp"},
+  /* ---- Marmita (montada na seção "Monte sua marmita") ---- */
+  {id:"marmita", cat:"marmita", nome:"Marmita de Açaí", desc:"", preco:0, img:"img/marmita.webp"},
   /* ---- Bolos no pote (R$ 10) ---- */
   {id:"bolo-brigadeiro", img:"img/bolo-brigadeiro.webp", cat:"bolo", nome:"Brigadeiro", desc:"Bolo de chocolate com recheio de brigadeiro.", preco:10, massa:"#5A2E1E", creme:"#7A3E26", topo:"#3E1C10", conf:"#2A120A"},
   {id:"bolo-prestigio", img:"img/bolo-prestigio.webp", cat:"bolo", nome:"Prestígio", desc:"Bolo de chocolate com creme de coco.", preco:10, massa:"#5A2E1E", creme:"#F4EFE6", topo:"#4A2416", conf:"#FFFFFF"},
@@ -861,6 +980,10 @@ renderMenu(); renderCart();
       {t:"folha",x:94, y:12, s:60, v:.22, d:0, b:1,   r:200},
       {t:"baga", x:92, y:85, s:20, v:.12, d:0, b:2.5, r:0}
     ],
+    marmita: [
+      {t:"baga", x:96, y:6,  s:30, v:.26, d:0, b:0,   r:0},
+      {t:"folha",x:-3, y:70, s:66, v:.2,  d:0, b:1,   r:30}
+    ],
     cardapio: [
       {t:"folha",x:-2, y:30, s:80, v:.28, d:0, b:0,   r:20},
       {t:"baga", x:97, y:8,  s:28, v:.18, d:0, b:1.5, r:0},
@@ -927,6 +1050,7 @@ renderMenu(); renderCart();
   requestAnimationFrame(quadro);
 })();
 </script>
+<script src="js/marmita.js"></script>
 <script type="module" src="js/garrafa3d.js"></script>
 </body>
 </html>
